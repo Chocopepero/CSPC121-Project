@@ -3,3 +3,5 @@ tools/settings/data/
 main
 .ccls-cache
 .breakpoints
+.vscode/c_cpp_properties.json
+.vscode/launch.json
