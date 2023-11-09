@@ -1,23 +1,41 @@
 #ifndef FOOD_WASTAGE_REPORT_H_
 #define FOOD_WASTAGE_REPORT_H_
 
-// Please fill in below.
-// <Your name>
-// <Your section number> (e.g. CPSC 121L-01)
-// <Date>
-// <Your csu.fullerton.edu email>
-// <Your GitHub username>
+// Samuel Kim
+// CPSC 121L - 02
+// 2023-11-09
+// samkunkim@csu.fullerton.edu
+// @ChocoPepero
+
+#include "food_wastage_record.h"
+#include <vector>
+#include <iostream>
 
 class FoodWastageReport {
-  // ======================= YOUR CODE HERE =======================
-  // Write the FoodWastageReport class here. Refer to your class design for the
-  // member variables, constructors, and member functions needed.
-  //
-  // Note: mark functions that do not modify the member variables
-  // as const, by writing `const` after the parameter list.
-  // Pass objects by const reference when appropriate.
-  // Remember that std::string is an object!
-  // ===============================================================
+ public:
+  void GenerateCommonWasteFood(std::vector<FoodWastageRecord>) {
+    
+  }
+  void GenerateCommonWasteMeals(std::vector<FoodWastageRecord>);
+  void CalculateCost(std::vector<FoodWastageRecord>);
+  void GenerateReason(std::vector<FoodWastageRecord>);
+  void GenerateCommonReason(std::vector<FoodWastageRecord>);
+  void GenerateCommonMechOfDisposal(std::vector<FoodWastageRecord>);
+  void GenerateSuggestedStrats(std::vector<FoodWastageRecord>);
+  std::vector<std::string> GetCommonWasteFoods();
+  std::vector<std::string> GetCommonWasteMeals();
+  double GetTotalCost();
+  std::vector<std::string> GetCommonReason();
+  std::vector<std::string> GetCommonMechanismDisposal();
+  std::vector<std::string> GetSuggestedStrats();
+
+ private:
+  std::vector<std::string> common_waste_foods_;
+  std::vector<std::string> common_waste_meals_;
+  double total_cost_;
+  std::vector<std::string> common_reason_;
+  std::vector<std::string> common_mechanism_disposal_;
+  std::vector<std::string> suggested_strats_;
 };
 
 #endif

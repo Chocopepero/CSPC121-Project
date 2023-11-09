@@ -74,6 +74,9 @@
         "typeinfo": "cpp",
         "variant": "cpp",
         "regex": "cpp",
-        "*.ipp": "cpp"
+        "*.ipp": "cpp",
+        "forward_list": "cpp",
+        "shared_mutex": "cpp",
+        "valarray": "cpp"
     }
 }
