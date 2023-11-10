@@ -212,7 +212,7 @@ void FoodWastageReport::GenerateSuggestedStrats(){
       donate = true;
     }
     if (reason == "Taste bad") {
-      buy_less == true;
+      buy_less = true;
     }
     if (reason == "Too much left overs") {
       buy_less = true;

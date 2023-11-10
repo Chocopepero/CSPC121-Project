@@ -31,7 +31,7 @@ class FoodWastageReport {
   std::vector<std::string> GetCommonMechanismDisposal() const {
     return common_mechanism_disposal_;
   }
-  std::vector<std::string> GetSuggestedStrats() const { suggested_strats_; }
+  std::vector<std::string> GetSuggestedStrats() const { return suggested_strats_; }
 
  private:
   std::vector<std::string> common_waste_foods_;

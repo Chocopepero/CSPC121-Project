@@ -9,7 +9,8 @@
             "compilerPath": "E:/msys64/ucrt64/bin/gcc.exe",
             "cStandard": "${default}",
             "cppStandard": "${default}",
-            "intelliSenseMode": "windows-gcc-x64"
+            "intelliSenseMode": "windows-gcc-x64",
+            "configurationProvider": "ms-vscode.makefile-tools"
         }
     ],
     "version": 4
