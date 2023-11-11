@@ -19,10 +19,12 @@ class FoodWastageTracker {
     for (FoodWastageRecord records_in_vector : waste_record_) {
       if (records_in_vector == record_to_add) {
         duplicate_exists = true;
+        break;
       }
     }
     if (!duplicate_exists) {
       waste_record_.push_back(record_to_add);
+      duplicate_exists = true;
       return duplicate_exists;
     }
     return !duplicate_exists;
