@@ -15,30 +15,33 @@
 class FoodWastageTracker {
  public:
   bool AddFoodWasteRecord(const FoodWastageRecord& record_to_add) {
-    waste_record_.push_back(record_to_add);
-    for (std::vector<FoodWastageRecord>::iterator record_to_add_iterator =
-             waste_record_.begin();
-         record_to_add_iterator != waste_record_.end();
-         record_to_add_iterator++) {
-      if (&record_to_add == &*record_to_add_iterator) {
-        return true;
+    bool duplicate_exists{false};
+    for (FoodWastageRecord records_in_vector : waste_record_) {
+      if (records_in_vector == record_to_add) {
+        duplicate_exists = true;
       }
     }
-    return false;
+    if (!duplicate_exists) {
+      waste_record_.push_back(record_to_add);
+      return duplicate_exists;
+    }
+    return !duplicate_exists;
   }
   bool DeleteFoodWasteRecord(FoodWastageRecord record_to_remove) {
-    FoodWastageRecord* record_to_remove_ptr{};
-    for (std::vector<FoodWastageRecord>::iterator record_to_remove_iterator =
-             waste_record_.begin();
-         record_to_remove_iterator != waste_record_.end();
-         record_to_remove_iterator++) {
-      if (record_to_remove_ptr == &(*record_to_remove_iterator))
-        waste_record_.erase(record_to_remove_iterator);
-      if (record_to_remove_ptr != &*record_to_remove_iterator) {
-        return true;
+    bool duplicate_exists{false};
+    std::vector<FoodWastageRecord>::iterator remove_itr = waste_record_.begin();
+    for (FoodWastageRecord records_in_vector : waste_record_) {
+      if (records_in_vector == record_to_remove) {
+        duplicate_exists = true;
+        break;
       }
+      remove_itr++;
     }
-    return false;
+    if (duplicate_exists) {
+      waste_record_.erase(remove_itr);
+      return duplicate_exists;
+    }
+    return duplicate_exists;
   }
   std::vector<FoodWastageRecord> GetWasteRecord() const {
     return waste_record_;

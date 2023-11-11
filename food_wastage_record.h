@@ -31,6 +31,24 @@ class FoodWastageRecord {
     disposal_method_ = disposal_method;
   }
   void SetCost(double cost) { cost_ = cost; }
+  bool Compare(const FoodWastageRecord record_to_compare) {
+    return (record_to_compare.GetDate() == date_ &&
+            record_to_compare.GetMeal() == meal_ &&
+            record_to_compare.GetFoodName() == food_name_ &&
+            record_to_compare.GetQuantityOfWaste() == quantity_of_waste_ &&
+            record_to_compare.GetWasteReason() == waste_reason_ &&
+            record_to_compare.GetDisposalMethod() == disposal_method_ &&
+            record_to_compare.GetCost() == cost_);
+  }
+  bool operator==(const FoodWastageRecord record_to_compare) {
+    return (record_to_compare.GetDate() == date_ &&
+            record_to_compare.GetMeal() == meal_ &&
+            record_to_compare.GetFoodName() == food_name_ &&
+            record_to_compare.GetQuantityOfWaste() == quantity_of_waste_ &&
+            record_to_compare.GetWasteReason() == waste_reason_ &&
+            record_to_compare.GetDisposalMethod() == disposal_method_ &&
+            record_to_compare.GetCost() == cost_);
+  }
 
  private:
   std::string date_;
