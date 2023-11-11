@@ -17,8 +17,8 @@ int CalculateMax(const std::vector<int> &num) {
     if (i > max) {
       max = i;
     }
-    return max;
   }
+  return max;
 }
 
 void FoodWastageReport::GenerateCommonWasteFood(
@@ -198,9 +198,10 @@ void FoodWastageReport::GenerateCommonMechOfDisposal(
   common_mechanism_disposal_ = waste_method_report;
 }
 
-void FoodWastageReport::GenerateSuggestedStrats(){
-  // No parameters required. Call GenerateCommonReason before using this function.
-  // Each strategy does not need to be repeated if multiple conditions are met.
+void FoodWastageReport::GenerateSuggestedStrats() {
+  // No parameters required. Call GenerateCommonReason before using this
+  // function. Each strategy does not need to be repeated if multiple conditions
+  // are met.
   std::vector<std::string> generated_strats{};
   bool donate{false};
   bool buy_less{false};
