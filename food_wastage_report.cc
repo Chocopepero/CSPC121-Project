@@ -224,7 +224,7 @@ void FoodWastageReport::GenerateSuggestedStrats() {
     generated_strats.push_back("Buy less food");
   }
   if (cook_smaller) {
-    generated_strats.push_back("Cook smaller servings");
+    generated_strats.push_back("Cook small servings");
   }
   if (donate) {
     generated_strats.push_back("Donate before expiration");
