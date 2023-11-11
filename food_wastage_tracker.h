@@ -22,15 +22,17 @@ class FoodWastageTracker {
       return false;
     }
   }
-  bool DeleteFoodWasteRecord(int index_of_record_to_remove) {
-    FoodWastageRecord* record_to_remove_ptr =
-        &waste_record_[index_of_record_to_remove];
-    std::vector<FoodWastageRecord>::iterator record_to_remove_iterator =
-        waste_record_.begin() + index_of_record_to_remove;
-    waste_record_.erase(record_to_remove_iterator);
-    if (record_to_remove_ptr != &waste_record_[index_of_record_to_remove]) {
-      return true;
-    } else {
+  bool DeleteFoodWasteRecord(FoodWastageRecord record_to_remove) {
+    FoodWastageRecord* record_to_remove_ptr{};
+    for (std::vector<FoodWastageRecord>::iterator record_to_remove_iterator =
+             waste_record_.begin();
+         record_to_remove_iterator != waste_record_.end();
+         record_to_remove_iterator++) {
+      if (record_to_remove_ptr == &(*record_to_remove_iterator))
+        waste_record_.erase(record_to_remove_iterator);
+      if (record_to_remove_ptr != &*record_to_remove_iterator) {
+        return true;
+      }
       return false;
     }
   }
@@ -38,8 +40,12 @@ class FoodWastageTracker {
     return waste_record_;
   }
   void GenerateReport() {
-    FoodWastageReport new_report(waste_record_);
-    waste_report_ = new_report;
+    waste_report_.GenerateCommonWasteFood(waste_record_);
+    waste_report_.GenerateCommonWasteMeals(waste_record_);
+    waste_report_.CalculateCost(waste_record_);
+    waste_report_.GenerateCommonReason(waste_record_);
+    waste_report_.GenerateCommonMechOfDisposal(waste_record_);
+    waste_report_.GenerateSuggestedStrats();
   }
   FoodWastageReport GetWasteReport() const { return waste_report_; }
 

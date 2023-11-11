@@ -14,7 +14,7 @@ class FoodWastageRecord {
   std::string GetDate() const { return date_; }
   std::string GetMeal() const { return meal_; }
   std::string GetFoodName() const { return food_name_; }
-  double GetQuantityOffWaste() const { return quantity_of_waste_; }
+  double GetQuantityOfWaste() const { return quantity_of_waste_; }
   std::string GetWasteReason() const { return waste_reason_; }
   std::string GetDisposalMethod() const { return disposal_method_; }
   double GetCost() const { return cost_; }

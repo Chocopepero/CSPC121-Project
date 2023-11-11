@@ -43,14 +43,15 @@ class FoodWastageTrackerBackend {
   crow::json::wvalue GetRecords() const;
 
   // Generate a report based on all the food wastage records in the memory.
-  crow::json::wvalue GetFoodWastageReport() const;
+  crow::json::wvalue GetFoodWastageReport();
 
  private:
   // File path of the file that stores all the food wastage records in JSON
   // format.
   const std::string &food_wastage_records_filepath_;
   // A top level class object to track the food wastage.
-  // TODO: Add a FoodWastageTracker object as a member here. Make sure you stick
+  // Completed: Add a FoodWastageTracker object as a member here. Make sure you stick
   // to the Google's style guide while naming your variable.
+  FoodWastageTracker food_wastage_tracker_;
 };
 #endif

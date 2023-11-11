@@ -21,16 +21,6 @@
 
 class FoodWastageReport {
  public:
-  // Calling all of the generate functions on instantiation. There is no
-  // case where it is beneficial to have non-initialized member variables.
-  FoodWastageReport(std::vector<FoodWastageRecord> food_waste_record) {
-    GenerateCommonWasteFood(food_waste_record);
-    GenerateCommonWasteMeals(food_waste_record);
-    CalculateCost(food_waste_record);
-    GenerateCommonReason(food_waste_record);
-    GenerateCommonMechOfDisposal(food_waste_record);
-    GenerateSuggestedStrats();
-  }
   void GenerateCommonWasteFood(const std::vector<FoodWastageRecord>&);
   void GenerateCommonWasteMeals(const std::vector<FoodWastageRecord>&);
   void CalculateCost(const std::vector<FoodWastageRecord>&);
