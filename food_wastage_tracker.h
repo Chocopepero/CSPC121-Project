@@ -16,11 +16,15 @@ class FoodWastageTracker {
  public:
   bool AddFoodWasteRecord(const FoodWastageRecord& record_to_add) {
     waste_record_.push_back(record_to_add);
-    if (&record_to_add == &waste_record_.back()) {
-      return true;
-    } else {
-      return false;
+    for (std::vector<FoodWastageRecord>::iterator record_to_add_iterator =
+             waste_record_.begin();
+         record_to_add_iterator != waste_record_.end();
+         record_to_add_iterator++) {
+      if (&record_to_add == &*record_to_add_iterator) {
+        return true;
+      }
     }
+    return false;
   }
   bool DeleteFoodWasteRecord(FoodWastageRecord record_to_remove) {
     FoodWastageRecord* record_to_remove_ptr{};
@@ -33,8 +37,8 @@ class FoodWastageTracker {
       if (record_to_remove_ptr != &*record_to_remove_iterator) {
         return true;
       }
-      return false;
     }
+    return false;
   }
   std::vector<FoodWastageRecord> GetWasteRecord() const {
     return waste_record_;
