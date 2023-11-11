@@ -12,8 +12,25 @@
 
 #include "food_wastage_record.h"
 
+// Class designed to take in a list of food waste records and calculate the
+// different categories. No default constructor provided as each result
+// should be empty if there is no input. Results are vectors of strings
+// as the input from the front end are strings. If any particular category
+// has two or more instances sharing the same maximum value, all are valid for
+// "most common [category]" and should all be returned.
+
 class FoodWastageReport {
  public:
+  // Calling all of the generate functions on instantiation. There is no
+  // case where it is beneficial to have non-initialized member variables.
+  FoodWastageReport(std::vector<FoodWastageRecord> food_waste_record) {
+    GenerateCommonWasteFood(food_waste_record);
+    GenerateCommonWasteMeals(food_waste_record);
+    CalculateCost(food_waste_record);
+    GenerateCommonReason(food_waste_record);
+    GenerateCommonMechOfDisposal(food_waste_record);
+    GenerateSuggestedStrats();
+  }
   void GenerateCommonWasteFood(const std::vector<FoodWastageRecord>&);
   void GenerateCommonWasteMeals(const std::vector<FoodWastageRecord>&);
   void CalculateCost(const std::vector<FoodWastageRecord>&);
@@ -31,7 +48,9 @@ class FoodWastageReport {
   std::vector<std::string> GetCommonMechanismDisposal() const {
     return common_mechanism_disposal_;
   }
-  std::vector<std::string> GetSuggestedStrats() const { return suggested_strats_; }
+  std::vector<std::string> GetSuggestedStrats() const {
+    return suggested_strats_;
+  }
 
  private:
   std::vector<std::string> common_waste_foods_;
