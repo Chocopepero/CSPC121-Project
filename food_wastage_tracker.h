@@ -48,19 +48,19 @@ class FoodWastageTracker {
   std::vector<FoodWastageRecord> GetWasteRecord() const {
     return waste_record_;
   }
-  void GenerateReport() {
-    waste_report_.GenerateCommonWasteFood(waste_record_);
-    waste_report_.GenerateCommonWasteMeals(waste_record_);
-    waste_report_.CalculateCost(waste_record_);
-    waste_report_.GenerateCommonReason(waste_record_);
-    waste_report_.GenerateCommonMechOfDisposal(waste_record_);
-    waste_report_.GenerateSuggestedStrats();
+  FoodWastageReport GenerateReport() const {
+    FoodWastageReport waste_report{};
+    waste_report.GenerateCommonWasteFood(waste_record_);
+    waste_report.GenerateCommonWasteMeals(waste_record_);
+    waste_report.CalculateCost(waste_record_);
+    waste_report.GenerateCommonReason(waste_record_);
+    waste_report.GenerateCommonMechOfDisposal(waste_record_);
+    waste_report.GenerateSuggestedStrats();
+    return waste_report;
   }
-  FoodWastageReport GetWasteReport() const { return waste_report_; }
 
  private:
   std::vector<FoodWastageRecord> waste_record_;
-  FoodWastageReport waste_report_;
 };
 
 #endif
