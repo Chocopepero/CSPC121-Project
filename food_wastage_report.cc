@@ -220,17 +220,17 @@ void FoodWastageReport::GenerateSuggestedStrats() {
       cook_smaller = true;
     }
   }
-  if (donate) {
-    generated_strats.push_back("Donate before expiration");
-  }
   if (buy_less) {
     generated_strats.push_back("Buy less food");
   }
   if (cook_smaller) {
     generated_strats.push_back("Cook smaller servings");
   }
+  if (donate) {
+    generated_strats.push_back("Donate before expiration");
+  }
   if (recycle) {
-    generated_strats.push_back("Recycle before expiration");
+    generated_strats.push_back("Recycle left overs");
   }
   suggested_strats_ = generated_strats;
 }
