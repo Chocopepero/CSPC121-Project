@@ -59,9 +59,9 @@ void SerializeFoodWastageRecordToJSON(
 
   writer->String("disposal_mechanism_");  // DO NOT MODIFY
   std::string disposal_mechanism;
-  // Completed:  6. Use the accessor/getter function for disposal mechanism from the
-  // FoodWastageRecord class object to get the disposal mechanism and store it
-  // in the disposal_mechanism string declared above.
+  // Completed:  6. Use the accessor/getter function for disposal mechanism from
+  // the FoodWastageRecord class object to get the disposal mechanism and store
+  // it in the disposal_mechanism string declared above.
   disposal_mechanism = record.GetDisposalMethod();
   writer->String(disposal_mechanism.c_str());
 
@@ -82,16 +82,16 @@ FoodWastageRecord DeserializeFoodWastageRecordFromJSON(
     const rapidjson::Value &json_obj) {
   FoodWastageRecord record;
 
-  /* Completed:  1. Use the mutator/setter function for date from the FoodWastageRecord
-   *  class to set the date in `record` object. You can get the date from JSON
-   *  object as follows: `json_obj["date_"].GetString()`.
-   *  Use that as an function  argument for the mutator that you'll call.
+  /* Completed:  1. Use the mutator/setter function for date from the
+   * FoodWastageRecord class to set the date in `record` object. You can get the
+   * date from JSON object as follows: `json_obj["date_"].GetString()`. Use that
+   * as an function  argument for the mutator that you'll call.
    */
   record.SetDate(json_obj["date_"].GetString());
-  /* Completed:  2. Use the mutator/setter function for meal from the FoodWastageRecord
-   *  class to set the meal in `record` object. You can get the meal from JSON
-   *  object as follows: `json_obj["meal_"].GetString()`.
-   *  Use that as an function  argument for the mutator that you'll call.
+  /* Completed:  2. Use the mutator/setter function for meal from the
+   * FoodWastageRecord class to set the meal in `record` object. You can get the
+   * meal from JSON object as follows: `json_obj["meal_"].GetString()`. Use that
+   * as an function  argument for the mutator that you'll call.
    */
   record.SetMeal(json_obj["meal_"].GetString());
   /* Completed:  3. Use the mutator/setter function for food name from the
@@ -115,17 +115,17 @@ FoodWastageRecord DeserializeFoodWastageRecordFromJSON(
    * for the mutator that you'll call.
    */
   record.SetWasteReason(json_obj["wastage_reason_"].GetString());
-  /* Completed:  6. Use the mutator/setter function for disposal mechanism from the
-   * FoodWastageRecord class to set the disposal mechanism in `record` object.
-   * You can get the disposal mechanism from JSON object as follows:
+  /* Completed:  6. Use the mutator/setter function for disposal mechanism from
+   * the FoodWastageRecord class to set the disposal mechanism in `record`
+   * object. You can get the disposal mechanism from JSON object as follows:
    * `json_obj["disposal_mechanism_"].GetString()`. Use that as an function
    * argument for the mutator that you'll call.
    */
   record.SetDisposalMethod(json_obj["disposal_mechanism_"].GetString());
-  /* Completed:  7. Use the mutator/setter function for cost from the FoodWastageRecord
-   *  class to set the cost in `record` object. You can get the cost from JSON
-   *  object as follows: `json_obj["cost_"].GetDouble()`.
-   *  Use that as an function  argument for the mutator that you'll call.
+  /* Completed:  7. Use the mutator/setter function for cost from the
+   * FoodWastageRecord class to set the cost in `record` object. You can get the
+   * cost from JSON object as follows: `json_obj["cost_"].GetDouble()`. Use that
+   * as an function  argument for the mutator that you'll call.
    */
   record.SetCost(json_obj["cost_"].GetDouble());
   return record;
@@ -173,9 +173,9 @@ crow::json::wvalue FoodWastageRecordToCrowJSON(
   record_json["wastage_reason"] = wastage_reason;
 
   std::string disposal_mechanism;
-  // Completed:  6. Use the accessor/getter function for disposal mechanism from the
-  // FoodWastageRecord class object to get the disposal mechanism and store it
-  // in the disposal_mechanism string declared above.
+  // Completed:  6. Use the accessor/getter function for disposal mechanism from
+  // the FoodWastageRecord class object to get the disposal mechanism and store
+  // it in the disposal_mechanism string declared above.
   disposal_mechanism = record.GetDisposalMethod();
   record_json["disposal_mechanism"] = disposal_mechanism;
 
@@ -195,46 +195,46 @@ crow::json::wvalue FoodWastageReportToCrowJSON(
   crow::json::wvalue report_json({});
 
   std::vector<std::string> most_common_disposal_mechanisms{};
-  // Completed:  1: Call the member function of FoodWastageReport class that returns
-  // all the most common disposal mechanisms as a vector of strings. Store the
-  // result in the vector declared above.
+  // Completed:  1: Call the member function of FoodWastageReport class that
+  // returns all the most common disposal mechanisms as a vector of strings.
+  // Store the result in the vector declared above.
   most_common_disposal_mechanisms = report.GetCommonMechanismDisposal();
   report_json["most_common_disposal_mechanism_"] =
       most_common_disposal_mechanisms;
 
   std::vector<std::string> most_commonly_wasted_foods{};
-  // Completed:  2: Call the member function of FoodWastageReport class that returns
-  // all the most commonly wasted foods as a vector of strings. Store the result
-  // in the vector declared above.
+  // Completed:  2: Call the member function of FoodWastageReport class that
+  // returns all the most commonly wasted foods as a vector of strings. Store
+  // the result in the vector declared above.
   most_commonly_wasted_foods = report.GetCommonWasteFoods();
   report_json["most_commonly_wasted_food_"] = most_commonly_wasted_foods;
 
   std::vector<std::string> most_common_wastage_reasons{};
-  // Completed:  3: Call the member function of FoodWastageReport class that returns
-  // all the most commonwastage reasons as a vector of strings. Store the result
-  // in the vector declared above.
+  // Completed:  3: Call the member function of FoodWastageReport class that
+  // returns all the most commonwastage reasons as a vector of strings. Store
+  // the result in the vector declared above.
   most_common_wastage_reasons = report.GetCommonReason();
   report_json["most_common_wastage_reason_"] = most_common_wastage_reasons;
 
   std::vector<std::string> most_costly_waste_producing_meals{};
-  // Completed:  4: Call the member function of FoodWastageReport class that returns
-  // all the most costly waste producing meals as a vector of strings. Store the
-  // result in the vector declared above.
+  // Completed:  4: Call the member function of FoodWastageReport class that
+  // returns all the most costly waste producing meals as a vector of strings.
+  // Store the result in the vector declared above.
   most_costly_waste_producing_meals = report.GetCommonWasteMeals();
   report_json["most_waste_producing_meal_"] = most_costly_waste_producing_meals;
 
   std::vector<std::string> suggested_strategies_to_reduce_waste{};
-  // Completed:  5: Call the member function of FoodWastageReport class that returns
-  // all the suggested strategies as a vector of strings. Store the result in
-  // the vector declared above.
+  // Completed:  5: Call the member function of FoodWastageReport class that
+  // returns all the suggested strategies as a vector of strings. Store the
+  // result in the vector declared above.
   suggested_strategies_to_reduce_waste = report.GetSuggestedStrats();
   report_json["suggested_strategies_to_reduce_waste_"] =
       suggested_strategies_to_reduce_waste;
 
   double total_cost_of_wastage = -9999.0;
-  // Completed:  6: Call the member function of FoodWastageReport class that returns
-  // the total cost of wastage as a double. Store the result in the double
-  // declared.
+  // Completed:  6: Call the member function of FoodWastageReport class that
+  // returns the total cost of wastage as a double. Store the result in the
+  // double declared.
   total_cost_of_wastage = report.GetTotalCost();
   report_json["total_cost_of_food_wasted_"] = total_cost_of_wastage;
 
@@ -247,13 +247,13 @@ FoodWastageRecord QueryStringToFoodWastageRecord(
     const crow::query_string &query_string) {
   FoodWastageRecord record;
 
-  // Completed:  1. Get the date from the query_string using query_string.get("date"),
-  // and set it in the `record` object using the setter in FoodWastageRecord
-  // class.
+  // Completed:  1. Get the date from the query_string using
+  // query_string.get("date"), and set it in the `record` object using the
+  // setter in FoodWastageRecord class.
   record.SetDate(query_string.get("date"));
-  // Completed:  2. Get the meal from the query_string using query_string.get("meal"),
-  // and set it in the `record` object using the setter in FoodWastageRecord
-  // class.
+  // Completed:  2. Get the meal from the query_string using
+  // query_string.get("meal"), and set it in the `record` object using the
+  // setter in FoodWastageRecord class.
   record.SetMeal(query_string.get("meal"));
   // Completed:  3. Get the food name from the query_string using
   // query_string.get("food_name"), and set it in the `record` object using the
@@ -307,9 +307,9 @@ bool FoodWastageTrackerBackend::LoadRecordsFromJSONFile() {
   for (rapidjson::Value::ConstValueIterator itr = doc.Begin(); itr != doc.End();
        ++itr) {
     FoodWastageRecord record = DeserializeFoodWastageRecordFromJSON(*itr);
-    // Completed: : Call the member function in the FoodWastageTracker class, on the
-    // member object that you added in food_wastage_tracker.h, that
-    // adds a `record`.
+    // Completed: : Call the member function in the FoodWastageTracker class, on
+    // the member object that you added in food_wastage_tracker.h, that adds a
+    // `record`.
     food_wastage_tracker_.AddFoodWasteRecord(record);
   }
 
@@ -323,9 +323,9 @@ bool FoodWastageTrackerBackend::WriteRecordsToJSONFile() const {
   rapidjson::Writer<rapidjson::StringBuffer> writer(ss);
   writer.StartArray();
   std::vector<FoodWastageRecord> records;
-  // Completed: : Call the member function in the FoodWastageTracker class, on the
-  // member object that you added in food_wastage_tracker.h, that returns all
-  // the FoodWastageRecord objects. Store the returned records in the vector
+  // Completed: : Call the member function in the FoodWastageTracker class, on
+  // the member object that you added in food_wastage_tracker.h, that returns
+  // all the FoodWastageRecord objects. Store the returned records in the vector
   // declared above. Also change the data type of the records vector to `const
   // std::vector<FoodWastageRecord>&`.
   records = food_wastage_tracker_.GetWasteRecord();
@@ -346,8 +346,8 @@ crow::json::wvalue FoodWastageTrackerBackend::AddRecord(
   FoodWastageRecord record = QueryStringToFoodWastageRecord(query_string);
   crow::json::wvalue status;
   bool add_result = false;
-  // Completed: : Call the member function in the FoodWastageTracker class, on the
-  // member object that you added in food_wastage_tracker.h, that adds a
+  // Completed: : Call the member function in the FoodWastageTracker class, on
+  // the member object that you added in food_wastage_tracker.h, that adds a
   // `record` and returns the status of the add operation as a bool. Store the
   // returned value in the bool declared above.
   add_result = food_wastage_tracker_.AddFoodWasteRecord(record);

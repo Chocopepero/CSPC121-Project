@@ -37,10 +37,9 @@ void FoodWastageReport::GenerateCommonWasteFood(
   }
   // Iterate through map and keep track of highest occurance.
   int highest_occurance{0};
-  for (std::map<std::string, int>::iterator it = food_occurances.begin();
-       it != food_occurances.end(); it++) {
-    if (it->second > highest_occurance) {
-      highest_occurance = it->second;
+  for (std::pair<std::string, int> occurances : food_occurances) {
+    if (occurances.second > highest_occurance) {
+      highest_occurance = occurances.second;
     }
   }
   // Go back through map and add any key with value == highest occurance and add
@@ -50,10 +49,9 @@ void FoodWastageReport::GenerateCommonWasteFood(
   // Ask professors about map.upperbound()?
   // Create a new vector then make member variable = to new vector.
   std::vector<std::string> common_waste_new_report{};
-  for (std::map<std::string, int>::iterator it = food_occurances.begin();
-       it != food_occurances.end(); it++) {
-    if (it->second == highest_occurance) {
-      common_waste_new_report.push_back(it->first);
+  for (std::pair<std::string, int> occurances : food_occurances) {
+    if (occurances.second == highest_occurance) {
+      common_waste_new_report.push_back(occurances.first);
     }
   }
   common_waste_foods_ = common_waste_new_report;
@@ -231,6 +229,9 @@ void FoodWastageReport::GenerateSuggestedStrats() {
   }
   if (recycle) {
     generated_strats.push_back("Recycle before expiration");
+  }
+  if (common_reason_.empty()) {
+    generated_strats.clear();
   }
   suggested_strats_ = generated_strats;
 }
