@@ -220,7 +220,7 @@ crow::json::wvalue FoodWastageReportToCrowJSON(
   // Completed:  4: Call the member function of FoodWastageReport class that
   // returns all the most costly waste producing meals as a vector of strings.
   // Store the result in the vector declared above.
-  most_costly_waste_producing_meals = report.GetCommonWasteMeals();
+  most_costly_waste_producing_meals = report.GetCostlyWasteMeals();
   report_json["most_waste_producing_meal_"] = most_costly_waste_producing_meals;
 
   std::vector<std::string> suggested_strategies_to_reduce_waste{};

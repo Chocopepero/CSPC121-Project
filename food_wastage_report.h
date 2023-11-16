@@ -22,7 +22,7 @@
 class FoodWastageReport {
  public:
   void GenerateCommonWasteFood(const std::vector<FoodWastageRecord>&);
-  void GenerateCommonWasteMeals(const std::vector<FoodWastageRecord>&);
+  void GenerateCostlyWasteMeals(const std::vector<FoodWastageRecord>&);
   void CalculateCost(const std::vector<FoodWastageRecord>&);
   void GenerateCommonReason(const std::vector<FoodWastageRecord>&);
   void GenerateCommonMechOfDisposal(const std::vector<FoodWastageRecord>&);
@@ -30,7 +30,7 @@ class FoodWastageReport {
   std::vector<std::string> GetCommonWasteFoods() const {
     return common_waste_foods_;
   }
-  std::vector<std::string> GetCommonWasteMeals() const {
+  std::vector<std::string> GetCostlyWasteMeals() const {
     return common_waste_meals_;
   }
   double GetTotalCost() const { return total_cost_; }

@@ -27,26 +27,22 @@ void FoodWastageReport::GenerateCommonWasteFood(
   // Loop through parameter vector, every time food is recorded:
   // Check if food is in map, if so add one occurence. Else add key/value.
   std::map<std::string, int> food_occurances{};
-  for (FoodWastageRecord food_report : reported_food_list) {
-    std::string food_name = food_report.GetFoodName();
-    if (food_occurances.count(food_name) == 0) {
-      food_occurances.insert({food_name, 1});
-    } else {
-      food_occurances.at(food_name)++;
-    }
-  }
-  // Iterate through map and keep track of highest occurance.
   int highest_occurance{0};
-  for (std::pair<std::string, int> occurances : food_occurances) {
-    if (occurances.second > highest_occurance) {
-      highest_occurance = occurances.second;
+  for (FoodWastageRecord food_report : reported_food_list) {
+    if (food_occurances.count(food_report.GetFoodName()) == 0) {
+      food_occurances.insert({food_report.GetFoodName(), 1});
+      if (highest_occurance < 1) {
+        highest_occurance = 1;
+      }
+    } else {
+      food_occurances.at(food_report.GetFoodName())++;
+      if (food_occurances[food_report.GetFoodName()] > highest_occurance) {
+        highest_occurance = food_occurances[food_report.GetFoodName()];
+      }
     }
   }
   // Go back through map and add any key with value == highest occurance and add
   // that key to vector.
-  // NOTE: Extremely inefficient. High time complexity. Consider better
-  // strategy.
-  // Ask professors about map.upperbound()?
   // Create a new vector then make member variable = to new vector.
   std::vector<std::string> common_waste_new_report{};
   for (std::pair<std::string, int> occurances : food_occurances) {
@@ -57,38 +53,34 @@ void FoodWastageReport::GenerateCommonWasteFood(
   common_waste_foods_ = common_waste_new_report;
 }
 
-void FoodWastageReport::GenerateCommonWasteMeals(
+void FoodWastageReport::GenerateCostlyWasteMeals(
     const std::vector<FoodWastageRecord> &reported_food) {
-  // Similar to previous function but only has 3 fixed options.
-  // Iterate through vector, keep track of meals wasted via 3 ints.
-  // Compare 3 ints to one another, add correlating meals to vector.
-  int breakfast{0};
-  int lunch{0};
-  int dinner{0};
+  // Create a map, everytime a key is incremented, check to see if is now the
+  // highest occurance and set it to that value.
+  std::map<std::string, int> wasted_meals{};
+  int highest_occurance{0};
   for (FoodWastageRecord food_record : reported_food) {
-    if (food_record.GetMeal() == "Breakfast") {
-      breakfast++;
-    }
-    if (food_record.GetMeal() == "Lunch") {
-      lunch++;
-    }
-    if (food_record.GetMeal() == "Dinner") {
-      dinner++;
+    if (wasted_meals.count(food_record.GetMeal()) == 0) {
+      wasted_meals.insert({food_record.GetMeal(), 1});
+      if (highest_occurance < 1) {
+        highest_occurance = 1;
+      } else {
+        wasted_meals[food_record.GetMeal()]++;
+        if (highest_occurance < wasted_meals[food_record.GetMeal()]) {
+          highest_occurance = wasted_meals[food_record.GetMeal()];
+        }
+      }
     }
   }
-  std::vector<int> meal_occurance{breakfast, lunch, dinner};
-  int largest = CalculateMax(meal_occurance);
+  // Iterate through map, if key has value equal to highest occurance, add key
+  // to vector.
   std::vector<std::string> waste_meal_report{};
-  if (breakfast == largest) {
-    waste_meal_report.push_back("Breakfast");
+  for (std::pair<std::string, int> record : wasted_meals) {
+    if (record.second == highest_occurance) {
+      waste_meal_report.push_back(record.first);
+    }
+    common_waste_meals_ = waste_meal_report;
   }
-  if (lunch == largest) {
-    waste_meal_report.push_back("Lunch");
-  }
-  if (dinner == largest) {
-    waste_meal_report.push_back("Dinner");
-  }
-  common_waste_meals_ = waste_meal_report;
 }
 
 void FoodWastageReport::CalculateCost(
@@ -137,6 +129,9 @@ void FoodWastageReport::GenerateCommonReason(
   if (other == largest) {
     waste_reason_report.push_back("Other");
   }
+  if (reported_food_list.empty()){
+    waste_reason_report.clear();
+  }
   common_reason_ = waste_reason_report;
 }
 
@@ -175,23 +170,26 @@ void FoodWastageReport::GenerateCommonMechOfDisposal(
                                    compost, donation, other};
   int largest = CalculateMax(waste_occurance);
   std::vector<std::string> waste_method_report{};
-  if (sink == largest) {
-    waste_method_report.push_back("Sink");
-  }
-  if (trash == largest) {
-    waste_method_report.push_back("Trash");
-  }
-  if (feed_to_pet == largest) {
-    waste_method_report.push_back("Feed to pet");
-  }
   if (compost == largest) {
     waste_method_report.push_back("Compost");
   }
   if (donation == largest) {
     waste_method_report.push_back("Donation");
   }
+  if (feed_to_pet == largest) {
+    waste_method_report.push_back("Feed to pet");
+  }
   if (other == largest) {
     waste_method_report.push_back("Other");
+  }
+  if (sink == largest) {
+    waste_method_report.push_back("Sink");
+  }
+  if (trash == largest) {
+    waste_method_report.push_back("Trash");
+  }
+  if (reported_food_list.empty()) {
+    waste_method_report.clear();
   }
   common_mechanism_disposal_ = waste_method_report;
 }

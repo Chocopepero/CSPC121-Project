@@ -51,7 +51,7 @@ class FoodWastageTracker {
   FoodWastageReport GenerateReport() const {
     FoodWastageReport waste_report{};
     waste_report.GenerateCommonWasteFood(waste_record_);
-    waste_report.GenerateCommonWasteMeals(waste_record_);
+    waste_report.GenerateCostlyWasteMeals(waste_record_);
     waste_report.CalculateCost(waste_record_);
     waste_report.GenerateCommonReason(waste_record_);
     waste_report.GenerateCommonMechOfDisposal(waste_record_);
