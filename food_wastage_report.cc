@@ -62,16 +62,17 @@ void FoodWastageReport::GenerateCostlyWasteMeals(
   for (FoodWastageRecord food_record : reported_food) {
     if (wasted_meals.count(food_record.GetMeal()) == 0) {
       wasted_meals.insert({food_record.GetMeal(), 1});
-      if (highest_occurance < 1) {
+      if (highest_occurance == 0) {
         highest_occurance = 1;
-      } else {
-        wasted_meals[food_record.GetMeal()]++;
-        if (highest_occurance < wasted_meals[food_record.GetMeal()]) {
-          highest_occurance = wasted_meals[food_record.GetMeal()];
-        }
+      }
+    } else {
+      wasted_meals[food_record.GetMeal()]++;
+      if (highest_occurance < wasted_meals[food_record.GetMeal()]) {
+        highest_occurance = wasted_meals[food_record.GetMeal()];
       }
     }
   }
+
   // Iterate through map, if key has value equal to highest occurance, add key
   // to vector.
   std::vector<std::string> waste_meal_report{};
@@ -79,8 +80,8 @@ void FoodWastageReport::GenerateCostlyWasteMeals(
     if (record.second == highest_occurance) {
       waste_meal_report.push_back(record.first);
     }
-    common_waste_meals_ = waste_meal_report;
   }
+  common_waste_meals_ = waste_meal_report;
 }
 
 void FoodWastageReport::CalculateCost(
@@ -129,7 +130,7 @@ void FoodWastageReport::GenerateCommonReason(
   if (other == largest) {
     waste_reason_report.push_back("Other");
   }
-  if (reported_food_list.empty()){
+  if (reported_food_list.empty()) {
     waste_reason_report.clear();
   }
   common_reason_ = waste_reason_report;
