@@ -210,7 +210,7 @@ void FoodWastageReport::GenerateSuggestedStrats() {
       recycle = false;
       donate = true;
     }
-    if (reason == "Taste bad") {
+    if (reason == "Tastes bad") {
       buy_less = true;
     }
     if (reason == "Too much left overs") {
@@ -218,17 +218,17 @@ void FoodWastageReport::GenerateSuggestedStrats() {
       cook_smaller = true;
     }
   }
-  if (donate) {
-    generated_strats.push_back("Donate before expiration");
-  }
   if (buy_less) {
     generated_strats.push_back("Buy less food");
   }
   if (cook_smaller) {
-    generated_strats.push_back("Cook smaller servings");
+    generated_strats.push_back("Cook small servings");
+  }
+  if (donate) {
+    generated_strats.push_back("Donate before expiration");
   }
   if (recycle) {
-    generated_strats.push_back("Recycle before expiration");
+    generated_strats.push_back("Recycle left overs");
   }
   if (common_reason_.empty()) {
     generated_strats.clear();

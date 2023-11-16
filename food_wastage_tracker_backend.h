@@ -43,7 +43,7 @@ class FoodWastageTrackerBackend {
   crow::json::wvalue GetRecords() const;
 
   // Generate a report based on all the food wastage records in the memory.
-  crow::json::wvalue GetFoodWastageReport();
+  crow::json::wvalue GetFoodWastageReport() const;
 
  private:
   // File path of the file that stores all the food wastage records in JSON

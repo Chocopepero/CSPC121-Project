@@ -360,7 +360,7 @@ crow::json::wvalue FoodWastageTrackerBackend::DeleteRecord(
   FoodWastageRecord record = QueryStringToFoodWastageRecord(query_string);
   crow::json::wvalue status;
   bool delete_result = false;
-  // TODO: Call the member function in the FoodWastageTracker class, on the
+  // Completed: Call the member function in the FoodWastageTracker class, on the
   // member object that you added in food_wastage_tracker.h, that deletes
   // `record` and returns the status of the delete operation as a bool. Store
   // the returned value in the bool declared above.
@@ -389,13 +389,12 @@ crow::json::wvalue FoodWastageTrackerBackend::GetRecords() const {
   return records_json;
 }
 
-crow::json::wvalue FoodWastageTrackerBackend::GetFoodWastageReport() {
+crow::json::wvalue FoodWastageTrackerBackend::GetFoodWastageReport() const {
   FoodWastageReport generated_report;
   // TODO: Call the member function in the FoodWastageTracker class, on the
   // member object that you added in food_wastage_tracker.h, that generates a
   // FoodWastageReport object using all the FoodWastageRecords and returns it.
   // Store the returned value in the `generated_report` object declared above.
-  food_wastage_tracker_.GenerateReport();
-  generated_report = food_wastage_tracker_.GetWasteReport();
+  generated_report = food_wastage_tracker_.GenerateReport();
   return FoodWastageReportToCrowJSON(generated_report);
 }
