@@ -69,6 +69,26 @@
         "comparison": "exact",
         "timeout": 10,
         "points": 10
+      },
+      {
+        "name": "Extra credit: Delete record",
+        "setup": "",
+        "run": "make clean && make test_delete_record",
+        "input": "",
+        "output": "",
+        "comparison": "exact",
+        "timeout": 10,
+        "points": 5
+      },
+      {
+        "name": "Grading note",
+        "setup": "",
+        "run": "echo '\nTake note that this last unit test is checking for extra credit. The total score is only 70 points even though the displayed score is out of 75. Completing the delete record unit test will give you 5 extra credit points. \n'",
+        "input": "",
+        "output": "",
+        "comparison": "exact",
+        "timeout": 10,
+        "points": 0
       }
     ]
   }
