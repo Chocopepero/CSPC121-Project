@@ -21,17 +21,31 @@ TEST(FoodWastageTrackerBackend, GetReportSingleRecord) {
   backend.AddRecord(CreateDefaultQueryString());
   json report = json::parse(backend.GetFoodWastageReport().dump());
 
-  ASSERT_TRUE(report.at("most_commonly_wasted_food_")[0] == kDefaultFood)
+  ASSERT_TRUE(
+      jsonContains(report.at("most_commonly_wasted_food_"), kDefaultFood))
       << "Food Wastage report incorrectly computed most common food.";
-  ASSERT_TRUE(report.at("most_common_disposal_mechanism_")[0] ==
-              kDefaultDisposal)
+  ASSERT_TRUE(jsonListLength(report.at("most_commonly_wasted_food_")) == 1)
+      << "Expected exactly 1 most commonly wasted food in this test "
+         "case.";
+  ASSERT_TRUE(jsonContains(report.at("most_common_disposal_mechanism_"),
+                           kDefaultDisposal))
       << "Food Wastage report incorrectly computed most common disposal "
          "mechanism mechanism.";
-  ASSERT_TRUE(report.at("most_common_wastage_reason_")[0] ==
-              kDefaultWastageReason)
+  ASSERT_TRUE(jsonListLength(report.at("most_common_disposal_mechanism_")) == 1)
+      << "Expected exactly 1 most common disposal mechanism in this test "
+         "case.";
+  ASSERT_TRUE(jsonContains(report.at("most_common_wastage_reason_"),
+                           kDefaultWastageReason))
       << "Food Wastage report incorrectly computed most common wastage reason.";
-  ASSERT_TRUE(report.at("most_waste_producing_meal_")[0] == kDefaultMeal)
+  ASSERT_TRUE(jsonListLength(report.at("most_common_wastage_reason_")) == 1)
+      << "Expected exactly 1 most common wastage reason in this test "
+         "case.";
+  ASSERT_TRUE(
+      jsonContains(report.at("most_waste_producing_meal_"), kDefaultMeal))
       << "Food Wastage report incorrectly computed most waste producing meal.";
+  ASSERT_TRUE(jsonListLength(report.at("most_waste_producing_meal_")) == 1)
+      << "Expected exactly 1 most common waste producing meal in this test "
+         "case.";
   ASSERT_TRUE(report.at("total_cost_of_food_wasted_") == kDefaultCost)
       << "Food Wastage report incorrectly computed total cost of food wasted.";
 
@@ -84,14 +98,24 @@ TEST(FoodWastageTrackerBackend, GetReportMultipleRecords) {
       << "Expected exactly 1 most common food wastage reason in this test "
          "case.";
 
-  ASSERT_TRUE(report.at("most_common_disposal_mechanism_")[0] ==
-              kDefaultDisposal)
+  json disposalMechanismJson = report.at("most_common_disposal_mechanism_");
+  ASSERT_TRUE(jsonContains(disposalMechanismJson, kTrashT))
       << "Food Wastage report incorrectly computed most common disposal "
          "mechanism.";
+  ASSERT_TRUE(jsonContains(disposalMechanismJson, kDonationT))
+      << "Food Wastage report incorrectly computed most common disposal "
+         "mechanism.";
+  ASSERT_TRUE(jsonListLength(disposalMechanismJson) == 2)
+      << "Expected exactly 2 disposal mechanisms in this test "
+         "case.";
 
   ASSERT_TRUE(report.at("most_waste_producing_meal_")[0] == kDefaultMeal)
       << "Food Wastage report incorrectly computed most waste producing "
          "meal.";
+  ASSERT_TRUE(jsonListLength(report.at("most_waste_producing_meal_")) == 1)
+      << "Expected exactly 1 most common waste producing meal in this test "
+         "case.";
+
   ASSERT_TRUE(report.at("total_cost_of_food_wasted_") == 13.5)
       << "Food Wastage report incorrectly computed total cost of food "
          "wasted.";
